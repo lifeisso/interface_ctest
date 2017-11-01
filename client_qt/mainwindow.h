@@ -22,7 +22,7 @@ public:
     int packet_db;
 
 protected:
-       void run();
+       //void run();
 };
 
 class MainWindow : public QMainWindow
@@ -57,10 +57,10 @@ private slots:
     void on_pushButtonu10_clicked();
 
     #define DATA_PATH "/mnt/Nand/VD/dat/test_data.txt"
-    void save_test_zigbee_data();
+    //void save_test_zigbee_data();
 private:
     Ui::MainWindow *ui;
-    Thread T;
+    //Thread T;
 
 };
 

@@ -1,19 +1,20 @@
 /********************************************************************************
-** Form generated from reading UI file 'mainwindow.ui'
+** Form generated from reading UI file 'mainwindow_zigbee_test.ui'
 **
 ** Created by: Qt User Interface Compiler version 4.8.6
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
 
-#ifndef UI_MAINWINDOW_H
-#define UI_MAINWINDOW_H
+#ifndef UI_MAINWINDOW_ZIGBEE_TEST_H
+#define UI_MAINWINDOW_ZIGBEE_TEST_H
 
 #include <QtCore/QVariant>
 #include <QtGui/QAction>
 #include <QtGui/QApplication>
 #include <QtGui/QButtonGroup>
 #include <QtGui/QHeaderView>
+#include <QtGui/QLabel>
 #include <QtGui/QLineEdit>
 #include <QtGui/QMainWindow>
 #include <QtGui/QMenuBar>
@@ -48,6 +49,12 @@ public:
     QPushButton *pushButtonio;
     QPushButton *pushButtonu9;
     QPushButton *pushButtonu10;
+    QLineEdit *lineEditSum;
+    QLineEdit *lineEditNumber;
+    QLineEdit *lineEditDB;
+    QLabel *label;
+    QLabel *label_2;
+    QLabel *label_3;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -132,6 +139,24 @@ public:
         pushButtonu10->setObjectName(QString::fromUtf8("pushButtonu10"));
         pushButtonu10->setGeometry(QRect(260, 50, 91, 41));
         pushButtonu10->setFont(font);
+        lineEditSum = new QLineEdit(centralWidget);
+        lineEditSum->setObjectName(QString::fromUtf8("lineEditSum"));
+        lineEditSum->setGeometry(QRect(300, 150, 311, 28));
+        lineEditNumber = new QLineEdit(centralWidget);
+        lineEditNumber->setObjectName(QString::fromUtf8("lineEditNumber"));
+        lineEditNumber->setGeometry(QRect(300, 190, 311, 28));
+        lineEditDB = new QLineEdit(centralWidget);
+        lineEditDB->setObjectName(QString::fromUtf8("lineEditDB"));
+        lineEditDB->setGeometry(QRect(300, 230, 311, 28));
+        label = new QLabel(centralWidget);
+        label->setObjectName(QString::fromUtf8("label"));
+        label->setGeometry(QRect(240, 150, 51, 18));
+        label_2 = new QLabel(centralWidget);
+        label_2->setObjectName(QString::fromUtf8("label_2"));
+        label_2->setGeometry(QRect(240, 190, 51, 18));
+        label_3 = new QLabel(centralWidget);
+        label_3->setObjectName(QString::fromUtf8("label_3"));
+        label_3->setGeometry(QRect(240, 230, 51, 18));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
@@ -162,6 +187,9 @@ public:
         pushButtonio->setText(QApplication::translate("MainWindow", "IO\346\265\213\350\257\225", 0, QApplication::UnicodeUTF8));
         pushButtonu9->setText(QApplication::translate("MainWindow", "u9\346\265\213\350\257\225", 0, QApplication::UnicodeUTF8));
         pushButtonu10->setText(QApplication::translate("MainWindow", "u10\346\265\213\350\257\225", 0, QApplication::UnicodeUTF8));
+        label->setText(QApplication::translate("MainWindow", "\346\200\273\345\214\205\346\225\260", 0, QApplication::UnicodeUTF8));
+        label_2->setText(QApplication::translate("MainWindow", "\347\216\260\345\214\205\345\217\267", 0, QApplication::UnicodeUTF8));
+        label_3->setText(QApplication::translate("MainWindow", "\344\277\241\345\217\267", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
 };
@@ -172,4 +200,4 @@ namespace Ui {
 
 QT_END_NAMESPACE
 
-#endif // UI_MAINWINDOW_H
+#endif // UI_MAINWINDOW_ZIGBEE_TEST_H

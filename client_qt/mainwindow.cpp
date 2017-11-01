@@ -43,6 +43,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+//232接口测试命令
 void MainWindow::on_pushButton232_clicked()
 {
     CMsg msg(0x5000);
@@ -54,6 +55,7 @@ void MainWindow::on_pushButton232_clicked()
     msg.SendMsg(mb.mtype, &cmd, sizeof(cmd));
 }
 
+//485接口测试命令
 void MainWindow::on_pushButton485_clicked()
 {
     CMsg msg(0x5000);
@@ -65,6 +67,7 @@ void MainWindow::on_pushButton485_clicked()
     msg.SendMsg(mb.mtype, &cmd, sizeof(cmd));
 }
 
+//422接口测试命令
 void MainWindow::on_pushButton422_clicked()
 {
     CMsg msg(0x5000);
@@ -76,6 +79,7 @@ void MainWindow::on_pushButton422_clicked()
     msg.SendMsg(mb.mtype, &cmd, sizeof(cmd));
 }
 
+//网络1接口测试命令
 void MainWindow::on_pushButtonnet1_clicked()
 {
     CMsg msg(0x5000);
@@ -87,6 +91,7 @@ void MainWindow::on_pushButtonnet1_clicked()
     msg.SendMsg(mb.mtype, &cmd, sizeof(cmd));
 }
 
+//网络2接口测试命令
 void MainWindow::on_pushButtonnet2_clicked()
 {
     CMsg msg(0x5000);
@@ -98,6 +103,7 @@ void MainWindow::on_pushButtonnet2_clicked()
     msg.SendMsg(mb.mtype, &cmd, sizeof(cmd));
 }
 
+//蜂鸣器测试命令
 void MainWindow::on_pushButtonbeep_clicked()
 {
     CMsg msg(0x5000);
@@ -109,6 +115,7 @@ void MainWindow::on_pushButtonbeep_clicked()
     msg.SendMsg(mb.mtype, &cmd, sizeof(cmd));
 }
 
+//屏幕测试命令
 void MainWindow::on_pushButtonscreen_2_clicked()
 {
     CMsg msg(0x5000);
@@ -120,6 +127,7 @@ void MainWindow::on_pushButtonscreen_2_clicked()
     msg.SendMsg(mb.mtype, &cmd, sizeof(cmd));
 }
 
+//IO测试命令
 void MainWindow::on_pushButtonio_clicked()
 {
     CMsg msg(0x5000);
@@ -131,6 +139,7 @@ void MainWindow::on_pushButtonio_clicked()
     msg.SendMsg(mb.mtype, &cmd, sizeof(cmd));
 }
 
+//内部zigbee1接口测试命令
 void MainWindow::on_pushButtonu9_clicked()
 {
     CMsg msg(0x5000);
@@ -142,6 +151,7 @@ void MainWindow::on_pushButtonu9_clicked()
     msg.SendMsg(mb.mtype, &cmd, sizeof(cmd));
 }
 
+//内部zigbee2接口测试命令
 void MainWindow::on_pushButtonu10_clicked()
 {
     CMsg msg(0x5000);
@@ -198,9 +208,9 @@ void MainWindow::timerDone()
              }
         }
 
-         ui->lineEditDB->setText(QString::number(T.packet_db, 10));
-         ui->lineEditNumber->setText(QString::number(T.packet_number, 10));
-         ui->lineEditSum->setText(QString::number(T.packet_sum, 10));
+//         ui->lineEditDB->setText(QString::number(T.packet_db, 10));
+//         ui->lineEditNumber->setText(QString::number(T.packet_number, 10));
+//         ui->lineEditSum->setText(QString::number(T.packet_sum, 10));
 }
 #if 0
 //测试新zigbee

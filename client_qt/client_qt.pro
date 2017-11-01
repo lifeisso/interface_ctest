@@ -9,5 +9,7 @@ INCLUDEPATH += .
 
 # Input
 HEADERS += mainwindow.h ../src/com.h ../src/LinuxMsg.h
-FORMS += mainwindow.ui
+FORMS += mainwindow.ui \
+    mainwindow_zigbee_test.ui
 SOURCES += main.cpp mainwindow.cpp ../src/com.cpp ../src/LinuxMsg.cpp
+

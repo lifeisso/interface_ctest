@@ -4,21 +4,7 @@
 #include "com.h"
 #include "LinuxSocket.h"
 #include "LinuxMsg.h"
-
-//COM COM232;// COM485, COM422;
-#ifdef IMX6D
-#define DEVICE_232      "/dev/ttymxc1"
-#define DEVICE_485      "/dev/ttyS0"
-#define DEVICE_422      "/dev/ttymxc2"
-#define DEVICE_U9      "/dev/ttymxc3"
-#define DEVICE_U10      "/dev/ttymxc4"
-#else
-#define DEVICE_232      "/dev/ttymxc6"
-#define DEVICE_485      "/dev/ttymxc7"
-#define DEVICE_422      "/dev/ttymxc5"
-#define DEVICE_U9      "/dev/ttymxc3"
-#define DEVICE_U10      "/dev/ttymxc2"
-#endif
+#include "device.h"
 
 #define BIT232      0
 #define BIT485      1
@@ -39,6 +25,7 @@
 //bit, 0:232 1:485 2:422 3:net1 4:net2 5:u9 6:u10 7:io 8:屏
 int cmd = 0;
 int result = 0, result_old = 0;;
+device_des d;
 
 //0：不接收命令， 1：接收命令
 int cmd_flag = 0;
@@ -53,14 +40,14 @@ void *com_thread(void *arg)
 
     if(TEST_BIT(port, BIT232)){
             printf("232 open\n");
-        COMPort.COMOpen((char *)DEVICE_232, 115200);
+        COMPort.COMOpen((char *)d.name_232, 115200);
     }else if(TEST_BIT(port, BIT485)){
             printf("485 open\n");
-        COMPort.COMOpen((char *)DEVICE_485, 115200);
+        COMPort.COMOpen((char *)d.name_485, 115200);
     }else if(TEST_BIT(port, BITU9)){
-        COMPort.COMOpen((char *)DEVICE_U9, 115200);
+        COMPort.COMOpen((char *)d.zigbee_in1, 115200);
     }else if(TEST_BIT(port, BITU10)){
-        COMPort.COMOpen((char *)DEVICE_U10, 115200);
+        COMPort.COMOpen((char *)d.zigbee_in2, 115200);
     }
 
     int len = COMPort.COMWrite(buf, sizeof(buf));
@@ -221,7 +208,7 @@ void *zigbee422_thread(void *arg)
     }
 #endif
     sleep(3);
-    COMPort.COMOpen(DEVICE_422, 115200);
+    COMPort.COMOpen(d.name_422, 115200);
     //读协调器ID命令
     int len = GetID(sendbuf);
 #if 0
@@ -277,11 +264,11 @@ void *screen_thread(void *arg)
 
 void *auto_test_thread(void *arg)
 {   
+#if 0
     SET_BIT(cmd, BITIO);
     sleep(1);
     SET_BIT(cmd, BIT422);//no
     sleep(1);
-#if 0
     SET_BIT(cmd, BIT232);
     sleep(1);
     SET_BIT(cmd, BIT485);
