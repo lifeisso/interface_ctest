@@ -41,7 +41,7 @@ uint16_t in_cksum(uint16_t *addr, int len)
 
 struct ping_st * ping_v4_init(struct sockaddr sa)
 {
-    struct ping_st *pst;
+    struct ping_st *pst = NULL;
 
     pst = (struct ping_st *)malloc(sizeof(struct ping_st));
     if(pst == NULL){
@@ -54,6 +54,7 @@ struct ping_st * ping_v4_init(struct sockaddr sa)
 	pst->sockfd = socket(pst->pr.sasend.sa_family, SOCK_RAW, pst->pr.icmpproto);
 	if(pst->sockfd < 0){
 		printf("socket fail\n");
+        free(pst);
 		return NULL;
 	}
 
@@ -92,7 +93,7 @@ void recv_v4(struct ping_st *pst)
 	struct msghdr   msg;
 	struct iovec    iov;
 	char                    controlbuf[BUFSIZE];    
-	int n, errno;
+	int n;
 
 	iov.iov_base = pst->recvbuf;                                                    
 	iov.iov_len = sizeof(pst->recvbuf);                                             
