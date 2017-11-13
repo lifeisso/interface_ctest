@@ -20,16 +20,16 @@ device_des::device_des()
 {
     device_type = get_board_type();
     if(device_type == TYPE_9263){
-        DEVICE_DEBUG("Board: zhongqian 9263\n");
+        printf("Board: zhongqian 9263\n");
     }else if(device_type == TYPE_IMX6D){
-        DEVICE_DEBUG("Board: pinnike imx6d\n");
+        printf("Board: pinnike imx6d\n");
     }else if(device_type == TYPE_IMX6UL){
-        DEVICE_DEBUG("Board: zhiyuan imx6ul\n");
+        printf("Board: zhiyuan imx6ul\n");
     }else{
-        DEVICE_DEBUG("Board: not find\n");
+        printf("Board: not find\n");
     }
     get_device_name();
-    DEVICE_DEBUG("422: %s\n 232: %s\n485: %s\ninside1: %s\ninside2: %s\n", name_422, name_232, name_485, zigbee_in1, zigbee_in2);
+    printf("422: %s\n232: %s\n485: %s\ninside1: %s\ninside2: %s\n", name_422, name_232, name_485, zigbee_in1, zigbee_in2);
 }
 
 device_des::~device_des()
@@ -44,7 +44,7 @@ void device_des::get_device_name()
     char tmp_buf[100], tmp_buf1[100];
     int len;
     int find_flag = 0;
-    FILE *fp = fopen("./device_des.conf", "r");
+    FILE *fp = fopen("/mnt/Nand/VD/dat/device_des.conf", "r");
     if(fp == NULL){
         DEVICE_DEBUG("fopen fail\n");
         return;
@@ -57,7 +57,7 @@ void device_des::get_device_name()
         if(buf[0] == '\n'){
             continue;
         }
-        printf("%s", buf);
+        DEVICE_DEBUG("%s", buf);
         if(find_flag == 0){
             if(device_type == TYPE_9263){
                 if(strstr(buf, "9263") != NULL){

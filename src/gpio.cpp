@@ -133,7 +133,7 @@ int IMX6_GPIO::cmd_u10_pwr(int k)
 #ifdef IMX6
 		ioctl(gpio_fd, CMD_PWN_RFB, 0);  
 #else
-        SetGpioStatus(CMD_RF2_PWR, 1);
+        SetGpioStatus(CMD_RF2_PWR, 0);
 #endif
     }
     return 0;
@@ -228,6 +228,7 @@ int IMX6_GPIO::GetGpioNum(int cmd)
 		}
 		return iRet;
 }
+
 
 #if 0
 int IMX6_GPIO::SetGpioDir(int cmd, int dir)

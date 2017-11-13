@@ -39,10 +39,10 @@ void *com_thread(void *arg)
     printf("com pthread %d\n", port);
 
     if(TEST_BIT(port, BIT232)){
-            printf("232 open\n");
+        printf("232 open\n");
         COMPort.COMOpen((char *)d.name_232, 115200);
     }else if(TEST_BIT(port, BIT485)){
-            printf("485 open\n");
+        printf("485 open\n");
         COMPort.COMOpen((char *)d.name_485, 115200);
     }else if(TEST_BIT(port, BITU9)){
         COMPort.COMOpen((char *)d.zigbee_in1, 115200);
@@ -67,8 +67,6 @@ void *com_thread(void *arg)
                                             result |= 0x1;
                                     }else if(TEST_BIT(port, BIT485)){
                                             result |= 0x2;
-                                    }else if(TEST_BIT(port, BIT422)){
-                                            SET_BIT(result, BIT422);
                                     }else if(TEST_BIT(port, BITU9)){
                                             for(int i = 0; i < 3; i++){
                                                     igpio.cmd_u9_pwr(GPIO_ON);
@@ -147,11 +145,14 @@ int GetID(char *send_buf) {
     return 8;
 }
 
+#if 0
 void *zigbee_thread(void *arg)
 {
 
     pthread_exit(NULL);
 }
+#endif
+
 struct out_to_scats {                                                                                                                          
         char byVD_OUTPUT_ORDER;
         char cBE_VEHICLE;
@@ -197,7 +198,7 @@ void *zigbee422_thread(void *arg)
     int datalen;
     printf("422 thread\n");
 
-#if 0
+#if 1
     for(int i = 0; i < 3; i++){
         //断电
         igpio.cmd_422(GPIO_OFF);
@@ -262,18 +263,16 @@ void *screen_thread(void *arg)
     pthread_exit(NULL);
 }
 
-void *auto_test_thread(void *arg)
+void auto_test_thread(void)
 {   
 #if 0
+    SET_BIT(cmd, BITSCREEN);
+    sleep(1);
     SET_BIT(cmd, BITIO);
     sleep(1);
     SET_BIT(cmd, BIT422);//no
     sleep(1);
-    SET_BIT(cmd, BIT232);
-    sleep(1);
     SET_BIT(cmd, BIT485);
-    sleep(1);
-    SET_BIT(cmd, BIT422);
     sleep(1);
     SET_BIT(cmd, BITNET1);
     sleep(1);
@@ -289,8 +288,8 @@ void *auto_test_thread(void *arg)
     sleep(1);
     SET_BIT(cmd, BITBEEP);
     sleep(1);
-    cmd_flag = 1;
 #endif
+    cmd_flag = 1;
 }
 
 int main(int argc, char *argv[])
@@ -298,12 +297,10 @@ int main(int argc, char *argv[])
     pthread_t pid; 
     CMsg msg(0x5000);
     struct MsgBuf mb;
-    char buf[4];
 
     cmd_flag = 0;
-    pthread_create(&pid, NULL, auto_test_thread, NULL);
-    //cmd = 0x4;
-    //SET_BIT(cmd, BITSCREEN);
+    auto_test_thread();
+
     while(1){
         //接收qt命令
         if(cmd_flag == 1){
